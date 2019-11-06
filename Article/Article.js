@@ -1,4 +1,5 @@
-/* This is the data we will be using to create our article components */
+/* This is the data we will be using to 
+create our article components */
 /* Look over this data, then proceed to line 91*/
 const data = [
   {
@@ -85,10 +86,80 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  
+  {
+    title: 'How to Learn React',
+    date: 'June 23rd, 2019',
+    firstParagraph:  'Learning React is so easy. Anybody can do it',
+    secondParagraph:  'Just kidding...react is really hard but you can learn it too.',
+    thirdParagraph: 'In conclusion, this is a really bad article. '
   }
 ];
+const createArticle = content => {
+//create elements
+    const div = 
+  document.createElement('div');
+    const h2 = 
+  document.createElement('h2');
+    const date = 
+  document.createElement('p');
+  
+    const paragraph1 = 
+  document.createElement('p');
+    const paragraph2 = 
+  document.createElement('p');
+    const paragraph3 = 
+  document.createElement('p');
+    const span = 
+  document.createElement('span');
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+
+  //tree structure
+
+
+div.appendChild(h2);
+div.appendChild(date);
+div.appendChild(paragraph1);
+div.appendChild(paragraph2);
+div.appendChild(paragraph3);
+div.appendChild(span);
+
+
+div.classList.add('article');
+date.classList.add('date');
+span.classList.add('expandButton');
+span.textContent = "Expand";
+span.addEventListener('click', el => {
+  div.classList.toggle('article-open');
+})
+
+h2.textContent = content.title;
+date.textContent = content.date;
+paragraph1.textContent = content.firstParagraph;
+paragraph2.textContent = content.secondParagraph;
+paragraph3.textContent = content.thirdParagraph;
+
+return div;
+}
+
+
+
+
+//article.classList.add('article');
+//title.classList.add('title');
+//date.classList.add('date');
+//paragraph1.classList.add('p1');
+//paragraph2.classList.add('p2');
+//paragraph3.classList.add('p3');
+//button.classList.add("button");
+
+const articlesDiv = document.querySelector('.articles');
+data.forEach(content => articlesDiv.append(createArticle(content)));
+
+
+/* Step 1: Create a function that creates a component. 
+You will want your component to look like the template below: 
   
   <div class="article">
     <h2>{title of the article}</h2>
@@ -101,7 +172,8 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or
+   5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
